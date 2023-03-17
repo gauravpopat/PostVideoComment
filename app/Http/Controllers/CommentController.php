@@ -28,8 +28,7 @@ class CommentController extends Controller
             return $this->returnResponse(false,'Validation Error',$validation->errors());
 
         if($request->body){
-            $comment = Comment::findOrFail($id);
-            $comment->update([
+            Comment::findOrFail($id)->update([
                 'body'  => $request->body
             ]);
             return $this->returnResponse(true,'Comment Updated Successfully');
@@ -39,9 +38,7 @@ class CommentController extends Controller
 
     public function delete($id)
     {
-        $comment = Comment::findOrFail($id);
-        $comment->delete();
-
+        Comment::findOrFail($id)->delete();
         return $this->returnResponse('true','Comment Deleted Successfully');
     }
 }
