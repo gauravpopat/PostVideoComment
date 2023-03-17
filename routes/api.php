@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VideoController;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +36,11 @@ Route::controller(VideoController::class)->prefix('video')->group(function(){
     Route::post('create','create');
     Route::post('comment','comment');
     Route::post('update','update');
+    Route::get('delete/{id}','delete');
+});
+
+Route::controller(CommentController::class)->prefix('comment')->group(function(){
+    Route::get('list/{id}','list');
+    Route::get('update/{id}','update');
     Route::get('delete/{id}','delete');
 });

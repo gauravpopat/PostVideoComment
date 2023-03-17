@@ -53,7 +53,9 @@ class VideoController extends Controller
 
     public function delete($id)
     {
-        Video::findOrFail($id)->delete();
+        $video =Video::findOrFail($id);
+        $video->comments()->delete();
+        $video->delete();
         return $this->returnResponse(true, 'Video Deleted Successfully');
     }
 
